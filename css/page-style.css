@@ -1,0 +1,118 @@
+/* my stylesheet #1 */
+.modal-body img, .thumb-img img {
+	width:100%;
+}
+
+@media (min-width: 768px) {
+	.modal-dialog {
+		width:55%;
+	}
+}
+
+#main-page {
+	background: url("../img/earth.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+    min-height: 95vh;
+}
+
+@media (min-width: 768px) {
+    .navbar-default {
+        background-color: rgba(6,6,6,0.5);
+    }
+    
+    .navbar-default .navbar-nav > li:hover {
+    background-color: #40902C;
+    left: 2px;
+    }
+}
+    
+.navbar-default .navbar-nav > li > a {
+	color: #D7D7D7;
+	font-size: 1.2em;
+}
+
+.breadcrumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 50px;
+    position: fixed;
+    padding: 0 0 0 12px;
+    z-index: 10;
+    width: 100%;
+}
+
+p,h1 {
+	color: rgba(200,200,200,1);
+	text-shadow: 1px 1px 2px rgba(0,0,0,1);
+}
+
+.jumbotron {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+    position: relative;
+    top: -40px;
+}
+
+.jumbotron h1 {
+	margin-bottom: 80px;
+	margin-top: 80px;
+	background-color: rgba(0,0,0,0.5);
+	padding: 25px;
+	border-radius: 5px;
+	color: #84DE6E;
+
+}
+
+#heading>p, #additional-content>h3, #main-page h3 {
+    color: white;
+    font-weight: 700;
+    text-shadow: -1px -1px 2px rgba(0,0,0,1), 1px 1px 2px rgba(0,0,0,1), -1px 1px 2px rgba(0,0,0,1), 1px -1px 2px rgba(0,0,0,1),-2px -2px 6px rgba(0,0,0,1), 2px 2px 6px rgba(0,0,0,1), -2px 2px 6px rgba(0,0,0,1), 2px -2px 6px rgba(0,0,0,1);
+}
+
+.navbar-brand, .navbar-brand:focus {
+	background-color: rgb(64, 144, 44) !important;
+}
+
+.dropdown-menu {
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+#category-menu li a {
+	text-decoration: none;
+	padding: 5px 5%;
+	color: white;
+	line-height:2em;
+}
+
+
+#category-menu li:hover {
+	background-color: #40902C;
+}
+
+.divider {
+	margin: 0 !important;
+}
+
+.divider:first-child {
+    display:none;
+}
+
+.thumbnail {
+	background-color:rgba(20,20,20,0.8);
+    min-height: 365px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thumb-img {
+    min-height: 212px;
+}
+
+.thumbnail img {
+    max-width: 100%;
+    width:100%;
+}

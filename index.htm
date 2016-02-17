@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Responsive Web Site Development and Design Final Assignement</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/page-style.css">
+</head>
+<body>
+
+<!-------------------
+-----  P A G E ------
+-------------------->
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		
+	<!-- Collapsed menu-->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">        
+				<span class="sr-only">Toggle navigation</span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        	</button>
+			<a class="navbar-brand" href="index.htm">ANIMAL ENCYCLOPEDIA</a>		
+		</div>
+
+	<!-- Expanded menu-->
+		<div class="collapse navbar-collapse" id="main-menu">
+			<ul class="nav navbar-nav">
+				<li><a href="index.htm">Home</a></li>
+				<li class="dropdown">
+          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			          	<div id="category-menu"></div>
+			          </ul>
+        		</li>
+				<li><a href="#" data-toggle="modal" data-target="#about-modal">About</a></li>
+			</ul>
+
+		    <div class="navbar-form navbar-right">
+		      <input id="searchbox" type="text" class="form-control" placeholder="Search within titles...">
+		    </div>
+
+		</div>
+	</div>
+</nav>
+<ol class="breadcrumb">
+    <li>Home</li>
+</ol>
+    
+<!-- Page - main structure -->
+<div class="jumbotron" id="main-page">
+  <div class="container">
+    <div id="heading"></div>     
+    <span id="content"></span>
+    <span id="additional-content"></span>  
+  </div>
+</div>
+
+<!-----------------------
+-----  M O D A L S ------
+------------------------->    
+    
+<!-- Modal for About menu item -->
+<div id="about-modal" class="modal fade" role="dialog">
+	<div id="about-modal-content">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		      <div class="modal-body">
+				<p>This is a page made by Miroslav Kasiak as a task for a <a href="https://www.coursera.org" target="_blank">Coursera</a> training "<a href="https://www.coursera.org/learn/responsive-web-design/home/welcome" target="_blank"> Responsive Web Design</a>". The course is prepared by  <a href="http://www.gold.ac.uk/" target="_blank">University of London & Goldsmiths, University of London</a>.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+  	</div>
+</div>
+
+<!-- Modal for detailed image -->    
+<div id="image-modal" class="modal fade" role="dialog">
+	<div id="image-modal-content">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                 <!-- Place to insert data (image) via jquery -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+        </div>
+	</div>
+</div>
+    
+
+<!-----------------------------
+-----  T E M P L A T E S ------
+------------------------------>
+
+<!-- Handlebars template for "Tasks" menu-->
+<script type="text/x-handlebars-template" id="menu-template">
+    {{#each category}}
+	    <li role="separator" class="divider"></li>		    
+	    <li data-id="{{@index}}" data-name="{{name}}" class="choose-category"><a href="#">{{name}}</a></li>
+    {{/each}}	            
+</script>
+
+    
+<!-- Handlebars template for headings-->
+<script id="heading-template" type="text/x-handlebars-template">
+    <h1>{{name}}</h1>
+    <p>{{subtitle}}</p>
+</script>
+
+<!-- Handlebars template for the page with categories-->
+<script id="main-template" type="text/x-handlebars-template">
+    <div class="row">
+    {{#each category}}
+        <div class="col-sm-4" style="{{displayStyle}}">
+            <div class="thumbnail">
+                <div class="thumb-img category-image">
+                    <a href="#"><img src={{image1}} alt={{name}}  data-toggle="modal" data-target="#image-modal"/></a>
+                </div>
+                <div class="caption">
+                    <h3>{{name}}</h3>
+                    <p><a href="#" class="btn btn-primary choose-category" role="button" data-id="{{@index}}" data-name="{{name}}" >Know more!</a></p>
+                </div>
+            </div>
+        </div>   
+	{{/each}}
+    </div>
+</script>
+
+<!-- Handlebars template for the page with all animals in a category-->
+<script id="class-template" type="text/x-handlebars-template">
+    <div class="row">
+    {{#each animals}}
+        <div class="col-sm-4 col-md-3" style="{{displayStyle}}">
+            <div class="thumbnail">
+                <div class="thumb-img class-image" >
+                    <a href="#"><img src={{image1}} alt={{name}}  data-toggle="modal" data-target="#image-modal"/></a>
+                </div>
+                <div class="caption">
+                    <h3>{{name}}</h3>
+                    <p><a href="#" class="btn btn-primary choose-animal-btn" role="button" data-src="{{image1}}" data-id="{{@index}}" data-name="{{name}}">Know more!</a></p>
+                </div>
+            </div>
+        </div>   
+	{{/each}}
+    </div>  
+</script>
+
+<!-- Handlebars template to display animal details-->
+<script type="text/x-handlebars-template" id="animal-details-template">
+    <div class="row">
+            <div class="thumbnail">
+                <div class="col-md-5">
+                    <div class="class-image" >
+                        <a href="#"><img src={{image1}} alt={{name}}  data-toggle="modal" data-target="#image-modal"/></a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="caption">
+                        <p>{{description}}</p>
+                        <p><a href="#" class="btn btn-primary choose-category" role="button">Back to category</a></p>                        
+                    </div>
+                </div>
+            </div>
+    </div>  
+</script>
+
+<!-- Handlebars template to display animal results of search-->    
+<script id="results-template" type="text/x-handlebars-template">
+    <div class="row">
+    {{#each results}}
+        <div class="col-sm-4 col-md-3" style="{{displayStyle}}">
+            <div class="thumbnail">
+                <div class="thumb-img class-image" >
+                    <a href="#"><img src={{image1}} alt={{name}}  data-toggle="modal" data-target="#image-modal"/></a>
+                </div>
+                <div class="caption">
+                    <h3>{{name}}</h3>
+                    <p><a href="#" class="btn btn-primary choose-result-btn" role="button" data-src="{{image1}}" data-ctg="{{categoryIndex}}" data-ani="{{animalIndex}}" data-name="{{name}}">Know more!</a></p>
+                </div>
+            </div>
+        </div>   
+	{{/each}}
+    </div>  
+</script>
+
+<!------------------------
+----- S C R I P T S ------
+------------------------->
+    
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/handlebars.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
